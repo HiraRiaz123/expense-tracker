@@ -68,78 +68,87 @@ const ExpTracker = () => {
     return totalExpense;
   };
   return (
-    <div className="flex space-x-5 ml-4 justify-center">
-      <div className="bg-white w-72 h-80 mt-32 border-b-[5px] border-green-500 p-3 rounded-lg ">
-        <Income totalIncome={calculateTotalIncome()} />
-      </div>
-      <div className="bg-white h-[540px] w-[420px] rounded-lg shadow-lg mt-10">
-        <h1 className="text-2xl font-bold text-center p-3">Expense Tracker</h1>
-        <div className="flex justify-center">
-          <h1 className="text-lg font-bold text-center mt-3">Total Balance:</h1>
-          <h2 className="text-lg font-semibold ml-4 mt-3">
-            {totalBalance >= 0 ? "$" : "-$"}
-            {Math.abs(totalBalance).toFixed(2)}
-          </h2>
+    <div
+      className="bg-cover bg-center w-full h-screen"
+      style={{ backgroundImage: `url('../imgs/exp3.PNG')` }}
+    >
+      <div className="flex space-x-5 ml-4 justify-center">
+        <div className="bg-white w-72 h-80 mt-32 border-b-[5px] border-green-500 p-3 rounded-lg ">
+          <Income totalIncome={calculateTotalIncome()} />
         </div>
-        <div className="mt-5 w-[350px] h-[390px] p-3 mx-auto rounded shadow-lg border border-gray-100">
-          <h1 className="text-lg font-semibold text-center">
-            Add Your Transaction
+        <div className="bg-white h-[540px] w-[420px] rounded-lg shadow-lg mt-10">
+          <h1 className="text-2xl font-bold text-center p-3">
+            Expense Tracker
           </h1>
-          <form
-            className="flex flex-col text-center h-[280px] boder-1 border-double border-indigo-600 w-full justify-between my-3"
-            onSubmit={handleSubmit}
-          >
-            <select
-              className="border border-slate-300 rounded-md w-full px-1 py-1"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              required
+          <div className="flex justify-center">
+            <h1 className="text-lg font-bold text-center mt-3">
+              Total Balance:
+            </h1>
+            <h2 className="text-lg font-semibold ml-4 mt-3">
+              {totalBalance >= 0 ? "$" : "-$"}
+              {Math.abs(totalBalance).toFixed(2)}
+            </h2>
+          </div>
+          <div className="mt-5 w-[350px] h-[390px] p-3 mx-auto rounded shadow-lg border border-gray-100">
+            <h1 className="text-lg font-semibold text-center">
+              Add Your Transaction
+            </h1>
+            <form
+              className="flex flex-col text-center h-[280px] boder-1 border-double border-indigo-600 w-full justify-between my-3"
+              onSubmit={handleSubmit}
             >
-              <option value="" disabled>
-                Select Type
-              </option>
-              <option value="Income">Income</option>
-              <option value="Expense">Expense</option>
-            </select>
-            <input
-              type="text"
-              className="border border-slate-300 rounded-md w-full px-1 py-1"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-            <input
-              type="number"
-              min="0.01"
-              step="0.01"
-              className="border border-slate-300 rounded-md w-full px-1 py-1"
-              placeholder="Amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              required
-            />
-            <button
-              className="bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ringfocus:ring-purple-300 px-2 py-2 text-white rounded-full mb-[110px] ml-20 mr-20"
-              type="submit"
-            >
-              Add Transaction
-            </button>
-          </form>
-          <div className="h-32 -mt-28 overflow-auto">
-            {transactions.map((transaction) => (
-              <TransactionItem
-                key={transaction.id}
-                transaction={transaction}
-                handleEdit={handleEdit}
-                handleDestroy={handleDestroy}
+              <select
+                className="border border-slate-300 rounded-md w-full px-1 py-1"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Select Type
+                </option>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+              </select>
+              <input
+                type="text"
+                className="border border-slate-300 rounded-md w-full px-1 py-1"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
               />
-            ))}
+              <input
+                type="number"
+                min="0.01"
+                step="0.01"
+                className="border border-slate-300 rounded-md w-full px-1 py-1"
+                placeholder="Amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                required
+              />
+              <button
+                className="bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ringfocus:ring-purple-300 px-2 py-2 text-white rounded-full mb-[110px] ml-20 mr-20"
+                type="submit"
+              >
+                Add Transaction
+              </button>
+            </form>
+            <div className="h-32 -mt-28 overflow-auto">
+              {transactions.map((transaction) => (
+                <TransactionItem
+                  key={transaction.id}
+                  transaction={transaction}
+                  handleEdit={handleEdit}
+                  handleDestroy={handleDestroy}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="bg-white w-72 h-80 mt-32 border-b-[5px] border-red-600 p-3 rounded-lg">
-        <Expense totalExpense={calculateTotalExpense()} />
+        <div className="bg-white w-72 h-80 mt-32 border-b-[5px] border-red-600 p-3 rounded-lg">
+          <Expense totalExpense={calculateTotalExpense()} />
+        </div>
       </div>
     </div>
   );
