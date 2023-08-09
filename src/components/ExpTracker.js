@@ -107,6 +107,7 @@ const ExpTracker = () => {
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
             <input
               type="number"
